@@ -5,14 +5,14 @@ import (
 	"errors"
 )
 
+// Tor v3 onion address generator
 type V3 struct {
 }
 
-func (g *V3) GenerateTORDomainName(secretKey []byte) ([]byte, []byte, []byte, error) {
+// Generate tor v3 domain name using the secret key if secretKey is empty using default ed25519
+// key generation method. The length of the secretKey must be 32
+func (g *V3) GenerateTORDomainName(secretKey []byte) (publicKey []byte, privateKey []byte, onionAddress []byte, err error) {
 	// Generate key pair
-	var publicKey, privateKey []byte
-	var err error
-
 	if secretKey == nil {
 		publicKey, privateKey, err = ed25519.GenerateKey(nil)
 	} else {
@@ -29,6 +29,6 @@ func (g *V3) GenerateTORDomainName(secretKey []byte) ([]byte, []byte, []byte, er
 		return nil, nil, nil, err
 	}
 
-	onionAddress := MakeV3OnionAddressWithExtension(publicKey)
+	onionAddress = MakeV3OnionAddressWithExtension(publicKey)
 	return publicKey, privateKey, onionAddress, nil
 }

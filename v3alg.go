@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// Apply tor v3 onion address generation algorithm
 func PublicKeyToV3Address(publicKey []byte) []byte {
 	// checksum = H(".onion checksum" || publicKey || version)
 	var checksumBytes bytes.Buffer
@@ -24,6 +25,7 @@ func PublicKeyToV3Address(publicKey []byte) []byte {
 	return onionAddressBytes.Bytes()
 }
 
+// Make tor v3 onion address with .onion extension
 func MakeV3OnionAddressWithExtension(publicKey []byte) []byte {
 	onionAddress := strings.ToLower(base32.StdEncoding.EncodeToString(PublicKeyToV3Address(publicKey)))
 	onionAddress = onionAddress + ".onion"
