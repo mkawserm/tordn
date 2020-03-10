@@ -33,5 +33,5 @@ func (t *TORV3DomainNameGenerator) GenerateTORDomainName() (TORPublicKey, TORPri
 	onionAddressBytes.Write([]byte{0x03})
 	onionAddress := base32.StdEncoding.EncodeToString(onionAddressBytes.Bytes())
 
-	return TORPublicKey(publicKey), TORPrivateKey(privateKey), TORDomainName(onionAddress), err
+	return TORPublicKey(publicKey), TORPrivateKey(privateKey), TORDomainName(onionAddress), nil
 }
