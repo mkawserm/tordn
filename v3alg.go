@@ -2,28 +2,18 @@ package tordn
 
 import (
 	"bytes"
-	"crypto/ed25519"
 	"encoding/base32"
 	"golang.org/x/crypto/sha3"
+	"strings"
 )
 
-type TORV3DomainNameGenerator struct {
-}
-
-func (t *TORV3DomainNameGenerator) GenerateTORDomainName() (TORPublicKey, TORPrivateKey, TORDomainName, error) {
-
-	// Generate key pair
-	publicKey, privateKey, err := ed25519.GenerateKey(nil)
-
-	if err != nil {
-		return nil, nil, "", err
-	}
-
+func PublicKeyToV3Address(publicKey []byte) []byte {
 	// checksum = H(".onion checksum" || publicKey || version)
 	var checksumBytes bytes.Buffer
 	checksumBytes.Write([]byte(".onion checksum"))
 	checksumBytes.Write(publicKey)
 	checksumBytes.Write([]byte{0x03})
+
 	checksum := sha3.Sum256(checksumBytes.Bytes())
 
 	// onion_address = base32(publicKey || checksum || version)
@@ -31,7 +21,11 @@ func (t *TORV3DomainNameGenerator) GenerateTORDomainName() (TORPublicKey, TORPri
 	onionAddressBytes.Write(publicKey)
 	onionAddressBytes.Write(checksum[:2])
 	onionAddressBytes.Write([]byte{0x03})
-	onionAddress := base32.StdEncoding.EncodeToString(onionAddressBytes.Bytes())
+	return onionAddressBytes.Bytes()
+}
 
-	return TORPublicKey(publicKey), TORPrivateKey(privateKey), TORDomainName(onionAddress), nil
+func MakeV3OnionAddressWithExtension(publicKey []byte) []byte {
+	onionAddress := strings.ToLower(base32.StdEncoding.EncodeToString(PublicKeyToV3Address(publicKey)))
+	onionAddress = onionAddress + ".onion"
+	return []byte(onionAddress)
 }
