@@ -9,9 +9,11 @@ import (
 type V3 struct {
 }
 
+// Implements TORDomainNameGenerator interface
+//
 // Generate tor v3 domain name using the secretKey. If the secretKey is empty then default ed25519.GenerateKey
-// function will be used otherwise ed25519.NewKeyFromSeed will be used to generate public key.
-// The length of the secretKey must be 32
+// function will be used otherwise ed25519.NewKeyFromSeed will be used to generate the public key.
+// If provided the length of the secretKey must be 32
 func (g *V3) GenerateTORDomainName(secretKey []byte) (publicKey []byte, privateKey []byte, onionAddress []byte, err error) {
 	// Generate key pair
 	if secretKey == nil {

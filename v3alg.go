@@ -7,14 +7,13 @@ import (
 	"strings"
 )
 
-// Apply tor v3 onion address generation algorithm
+// Generate tor v3 onion address from the publicKey
 func PublicKeyToV3Address(publicKey []byte) []byte {
 	// checksum = H(".onion checksum" || publicKey || version)
 	var checksumBytes bytes.Buffer
 	checksumBytes.Write([]byte(".onion checksum"))
 	checksumBytes.Write(publicKey)
 	checksumBytes.Write([]byte{0x03})
-
 	checksum := sha3.Sum256(checksumBytes.Bytes())
 
 	// onion_address = base32(publicKey || checksum || version)
