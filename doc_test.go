@@ -5,7 +5,7 @@ import (
 	"github.com/mkawserm/tordn"
 )
 
-// Generate  v3 tor domain name
+// Generate v3 tor domain name
 func ExampleV3_GenerateTORDomainName() {
 
 	v3domainName := &tordn.V3{}
