@@ -1,8 +1,9 @@
 # tordn
 -------------------------------------------------
 
-The Onion Router Domain Name
+# The Onion Router Domain Name
 
+Package tordn provides the ability to generate tor version 3 onion address for the hidden service
 
 # DEVELOPER NOTE 
     1. Benchmark memory profile
