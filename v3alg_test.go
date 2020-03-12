@@ -1,6 +1,8 @@
 package tordn
 
-import "testing"
+import (
+	"testing"
+)
 import "crypto/ed25519"
 
 var onionAddressDataList = []struct {
@@ -30,6 +32,18 @@ var onionAddressDataList = []struct {
 		"yxe3npgo7gqsqlcguvy5epjm646jk2zl22cv26akeljc42dcukxidsid.onion",
 	},
 }
+
+//func TestPublicKeyToV3Address(t *testing.T) {
+//	for _, v := range onionAddressDataList {
+//		foundOnionAddress := PublicKeyToV3Address(v.torPublicKey)
+//		onionAddress := strings.ToLower(base32.StdEncoding.EncodeToString(foundOnionAddress))
+//		onionAddress = onionAddress + ".onion"
+//
+//		if v.expectedOnionAddress != onionAddress {
+//			t.Errorf("Invalid onion address. Expected: [%v] Found: [%v]", v.expectedOnionAddress, foundOnionAddress)
+//		}
+//	}
+//}
 
 func TestMakeV3OnionAddressWithExtension(t *testing.T) {
 

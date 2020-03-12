@@ -12,7 +12,7 @@ func ExampleV3_GenerateTORDomainName() {
 
 	// generate random v3 tor domain name
 	publicKey, privateKey, onionAddress, err := v3domainName.GenerateTORDomainName(nil)
-	if err != nil {
+	if err == nil {
 		fmt.Printf("Public Key:")
 		fmt.Println(publicKey)
 
@@ -20,12 +20,12 @@ func ExampleV3_GenerateTORDomainName() {
 		fmt.Println(privateKey)
 
 		fmt.Printf("Onion Address:")
-		fmt.Println(onionAddress)
+		fmt.Println(string(onionAddress))
 	}
 
 	secretKey := []byte("eipuopkyhrisvmrlbghubnlxunzkwoij")
 	publicKey1, privateKey1, onionAddress1, err1 := v3domainName.GenerateTORDomainName(secretKey)
-	if err1 != nil {
+	if err1 == nil {
 		fmt.Printf("Public Key:")
 		fmt.Println(publicKey1)
 
@@ -33,6 +33,6 @@ func ExampleV3_GenerateTORDomainName() {
 		fmt.Println(privateKey1)
 
 		fmt.Printf("Onion Address:")
-		fmt.Println(onionAddress1)
+		fmt.Println(string(onionAddress1))
 	}
 }

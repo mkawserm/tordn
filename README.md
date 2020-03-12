@@ -23,4 +23,8 @@ Package tordn provides the ability to generate tor version 3 onion address for t
     2. Escape Analysis
         
         `go test -gcflags '-m -m'`
+        
+    3. Test coverage
+    
+        `go test -coverprofile=cover.out`
 
