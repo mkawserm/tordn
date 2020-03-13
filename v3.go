@@ -5,11 +5,11 @@ import (
 	"errors"
 )
 
-// Tor v3 onion address generator
+// V3 TOR address generator
 type V3 struct {
 }
 
-// Implements TORDomainNameGenerator interface
+// GenerateTORDomainName implements TORDomainNameGenerator interface
 //
 // Generate tor v3 domain name using the secretKey. If the secretKey is empty then default ed25519.GenerateKey
 // function will be used otherwise ed25519.NewKeyFromSeed will be used to generate the public key.
