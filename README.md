@@ -7,7 +7,7 @@ Package tordn provides the ability to generate tor version 3 onion address for t
 
 # Example
 
-```go
+```
 package main
 
 import (
