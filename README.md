@@ -60,5 +60,5 @@ func main() {
         
     4. Race condition detection
     
-        ` go test -race`
+        `go test -race`
 
