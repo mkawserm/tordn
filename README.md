@@ -1,4 +1,4 @@
-# tordn
+# tordn [![Build Status](https://travis-ci.com/mkawserm/tordn.svg?branch=master)](https://travis-ci.com/mkawserm/tordn)
 -------------------------------------------------
 
 # The Onion Router Domain Name
