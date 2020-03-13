@@ -1,0 +1,17 @@
+dist: trusty
+sudo: false
+
+language: go
+
+go:
+  - '1.14'
+
+env:
+  - GOMAXPROCS=4
+  - GO111MODULE=on
+
+branches:
+  only:
+    - master
+
+script: make test test-race
