@@ -57,4 +57,8 @@ func main() {
     3. Test coverage
     
         `go test -coverprofile=cover.out`
+        
+    4. Race condition detection
+    
+        ` go test -race`
 
