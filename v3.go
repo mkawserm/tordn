@@ -20,6 +20,10 @@ func (g *V3) GenerateTORDomainName(secretKey []byte) (publicKey []byte, privateK
 	// Generate key pair
 	if secretKey == nil {
 		publicKey, privateKey, err = ed25519.GenerateKey(nil)
+
+		if err != nil {
+			return nil, nil, nil, err
+		}
 	} else {
 		if len(secretKey) != 32 {
 			return nil, nil, nil, ErrSecretKeyLengthMismatch
@@ -28,10 +32,6 @@ func (g *V3) GenerateTORDomainName(secretKey []byte) (publicKey []byte, privateK
 		privateKey = ed25519.NewKeyFromSeed(secretKey)
 		publicKey = make([]byte, 32)
 		copy(publicKey, privateKey[32:])
-	}
-
-	if err != nil {
-		return nil, nil, nil, err
 	}
 
 	onionAddress = MakeV3OnionAddressWithExtension(publicKey)
