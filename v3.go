@@ -5,6 +5,8 @@ import (
 	"errors"
 )
 
+var ErrSecretKeyLengthMismatch = errors.New("secret key length must be 32 bytes")
+
 // V3 TOR address generator
 type V3 struct {
 }
@@ -20,7 +22,7 @@ func (g *V3) GenerateTORDomainName(secretKey []byte) (publicKey []byte, privateK
 		publicKey, privateKey, err = ed25519.GenerateKey(nil)
 	} else {
 		if len(secretKey) != 32 {
-			return nil, nil, nil, errors.New("secretKey length must be 32")
+			return nil, nil, nil, ErrSecretKeyLengthMismatch
 		}
 
 		privateKey = ed25519.NewKeyFromSeed(secretKey)

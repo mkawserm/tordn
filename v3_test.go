@@ -44,6 +44,12 @@ func TestV3_GenerateTORDomainName(t *testing.T) {
 		if len(privateKey) != 64 {
 			t.Errorf("Expected privateKey length does not match")
 		}
+	}
 
+	{
+		_, _, _, err := v3.GenerateTORDomainName([]byte("1"))
+		if err != ErrSecretKeyLengthMismatch {
+			t.Errorf("Unexpected error %v", err)
+		}
 	}
 }
