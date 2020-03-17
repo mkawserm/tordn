@@ -1,6 +1,7 @@
 package tordn_test
 
 import (
+	"bytes"
 	"fmt"
 	"github.com/mkawserm/tordn"
 )
@@ -24,7 +25,7 @@ func ExampleV3_GenerateTORDomainName() {
 	}
 
 	secretKey := []byte("eipuopkyhrisvmrlbghubnlxunzkwoij")
-	publicKey1, privateKey1, onionAddress1, err1 := v3domainName.GenerateTORDomainName(secretKey)
+	publicKey1, privateKey1, onionAddress1, err1 := v3domainName.GenerateTORDomainName(bytes.NewReader(secretKey))
 	if err1 == nil {
 		fmt.Printf("Public Key:")
 		fmt.Println(publicKey1)

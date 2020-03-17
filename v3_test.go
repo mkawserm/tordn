@@ -1,6 +1,8 @@
 package tordn
 
 import (
+	"bytes"
+	"io"
 	"testing"
 )
 
@@ -25,7 +27,7 @@ var torDomainList = []struct {
 func TestV3_GenerateTORDomainName(t *testing.T) {
 	v3 := &V3{}
 	for _, d := range torDomainList {
-		_, _, foundOnionAddress, _ := v3.GenerateTORDomainName(d.secretKey)
+		_, _, foundOnionAddress, _ := v3.GenerateTORDomainName(bytes.NewReader(d.secretKey))
 		if d.expectedOnionAddress != string(foundOnionAddress) {
 			t.Errorf("Invalid onion address. Expected: [%v] Found: [%v]", d.expectedOnionAddress, foundOnionAddress)
 		}
@@ -47,8 +49,8 @@ func TestV3_GenerateTORDomainName(t *testing.T) {
 	}
 
 	{
-		_, _, _, err := v3.GenerateTORDomainName([]byte("1"))
-		if err != ErrSecretKeyLengthMismatch {
+		_, _, _, err := v3.GenerateTORDomainName(bytes.NewReader([]byte("1")))
+		if err != io.ErrUnexpectedEOF {
 			t.Errorf("Unexpected error %v", err)
 		}
 	}
