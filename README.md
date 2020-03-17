@@ -1,8 +1,10 @@
 # tordn 
 -------------------------------------------------
+[![GoDoc](https://godoc.org/github.com/mkawserm/tordn?status.svg)](https://godoc.org/github.com/mkawserm/tordn)
 [![Build Status](https://travis-ci.com/mkawserm/tordn.svg?branch=master)](https://travis-ci.com/mkawserm/tordn)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mkawserm/tordn)](https://goreportcard.com/report/github.com/mkawserm/tordn) 
 [![Coverage Status](https://coveralls.io/repos/github/mkawserm/tordn/badge.svg?branch=master)](https://coveralls.io/github/mkawserm/tordn?branch=master)
+
 -------------------------------------------------
 
 # The Onion Router Domain Name
